@@ -11,8 +11,9 @@ namespace DFrobotWindowIoTTempelate
     {
         UsbSerial usb;                          //Handle the USB connction
         RemoteDevice arduino;                   //Handle the arduino
-        private DispatcherTimer readTemperatureTimer;     //Timer for the LED to blink every one second
-        private const string LM35_PIN = "A5";         //Pin number of the LM35 Sensor
+        private DispatcherTimer blinkTimer;     //Timer for the LED to blink every one second
+        private const int LED_PIN = 13;         //Pin number of the on board LED
+        private PinState ledState;              //Pin state of the LED
 
         public MainPage()
         {
@@ -44,26 +45,39 @@ namespace DFrobotWindowIoTTempelate
 
         private void setup()
         {
-            //Set the pin mode of the led.
-            arduino.pinMode(LM35_PIN, PinMode.ANALOG);
+            //Set the initial state of the led.
+            ledState = PinState.LOW;
 
-            //Set the timer to schedule every 500 ms.
-            readTemperatureTimer = new DispatcherTimer();
-            readTemperatureTimer.Interval = TimeSpan.FromMilliseconds(500);
-            readTemperatureTimer.Tick += readTemperature;
-            readTemperatureTimer.Start();
+            //Set the pin mode of the led.
+            arduino.pinMode(LED_PIN, PinMode.OUTPUT);
+
+            //Set the timer to schedule blink() every one second.
+            blinkTimer = new DispatcherTimer();
+            blinkTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            blinkTimer.Tick += blink;
+            blinkTimer.Start();
         }
 
-        private void readTemperature(object sender, object e)
+        private void blink(object sender, object e)
         {
-            //Read analog value from 0 to 1023, which maps from 0 to 5V
-            int temperatureValue = arduino.analogRead(LM35_PIN);
-
-            //Convert analog value to temperature.
-            double temperature = (500.0 * temperatureValue) / 1024.0;
-
-            //Print temperature to Output.
-            Debug.WriteLine(temperature);
+            if (ledState == PinState.HIGH)  //LED state is HIGH.
+            {
+                //Turn off the LED.
+                arduino.digitalWrite(LED_PIN, PinState.LOW);
+                //Show the message in the Output dialog.
+                Debug.WriteLine("OFF");
+                //Set local LED state to Low.
+                ledState = PinState.LOW;
+            }
+            else    //LED state is LOW.
+            {
+                //Turn on the LED.
+                arduino.digitalWrite(LED_PIN, PinState.HIGH);
+                //Show the message in the Output dialog.
+                Debug.WriteLine("ON");
+                //Set local LED state to Low.
+                ledState = PinState.HIGH;
+            }
         }
     }
 }
