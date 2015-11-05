@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="28ddef6f-fd33-4731-981e-0d40c0af5f1c"
+    Name="57e648b4-f90c-4f06-975c-a588407102dc"
     Publisher="CN=Angelo"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="28ddef6f-fd33-4731-981e-0d40c0af5f1c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="57e648b4-f90c-4f06-975c-a588407102dc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DFrobotWindowIOTTempelate</DisplayName>
+    <DisplayName>DFrobotWindowIoTTempelate</DisplayName>
     <PublisherDisplayName>Angelo</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="DFrobotWindowIOTTempelate.App">
+      EntryPoint="DFrobotWindowIoTTempelate.App">
       <uap:VisualElements
-        DisplayName="DFrobotWindowIOTTempelate"
+        DisplayName="DFrobotWindowIoTTempelate"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="DFrobotWindowIOTTempelate"
+        Description="DFrobotWindowIoTTempelate"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
