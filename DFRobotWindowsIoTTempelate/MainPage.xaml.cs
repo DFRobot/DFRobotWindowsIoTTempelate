@@ -5,7 +5,7 @@ using Microsoft.Maker.Serial;
 using System;
 using System.Diagnostics;
 
-namespace DFrobotWindowIoTTempelate
+namespace DFRobotWindowsIoTTempelate
 {
     public sealed partial class MainPage : Page
     {
